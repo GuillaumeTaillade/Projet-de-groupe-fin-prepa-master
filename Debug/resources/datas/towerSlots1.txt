@@ -1,0 +1,4 @@
+iSlotNbr=3,
+vPosX=749,vPosY=372
+vPosX=629,vPosY=672
+vPosX=1199,vPosY=747

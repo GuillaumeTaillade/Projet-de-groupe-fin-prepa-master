@@ -1,0 +1,5 @@
+iEnnemySpawnNbr=2
+
+vTarX=1550,vTarY=50
+vPosX=-50,vPosY=1130,iDir=3
+vPosX=1970,vPosY=540,iDir=2

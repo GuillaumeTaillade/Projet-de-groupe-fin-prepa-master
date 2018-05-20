@@ -1,0 +1,127 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: Le répertoire intermédiaire (Release\) contient des fichiers partagés provenant d'un autre projet (SFML-window.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  fonctions.c
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(17): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(21): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(25): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(29): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(33): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(160): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(164): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(168): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(172): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(176): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(213): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(217): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(234): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(238): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+fonctions.c(38): warning C4020: 'sfFont_createFromFile' : paramètres réels trop nombreux
+fonctions.c(42): warning C4020: 'sfText_setFont' : paramètres réels trop nombreux
+fonctions.c(56): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+fonctions.c(60): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(67): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+fonctions.c(69): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(75): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+fonctions.c(88): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(90): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+fonctions.c(103): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+fonctions.c(105): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+fonctions.c(116): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+fonctions.c(121): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+fonctions.c(462): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(463): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(471): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(476): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(481): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(486): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(498): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(508): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(509): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(517): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+  main.c
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(17): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(21): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(25): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(29): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(33): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(160): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(164): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(168): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(172): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(176): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(213): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(217): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(234): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\guillaume\desktop\terre creuse 12-05-2018\projet terre creuse\sfml-window\header.h(238): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+main.c(6): warning C4244: 'fonction' : conversion de 'time_t' en 'unsigned int', perte possible de données
+main.c(174): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(201): warning C4305: 'fonction' : troncation de 'double' à 'float'
+main.c(342): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(354): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(360): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(372): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(378): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(390): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(396): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(408): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(414): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(426): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(784): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(785): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(1226): warning C4020: 'sfMusic_stop' : paramètres réels trop nombreux
+main.c(1231): warning C4020: 'sfMusic_stop' : paramètres réels trop nombreux
+main.c(1238): warning C4020: 'sfMusic_play' : paramètres réels trop nombreux
+main.c(1251): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'char *'
+main.c(1256): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'char *'
+main.c(1266): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'char *'
+main.c(1273): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'char *'
+main.c(1363): warning C4020: 'sfMusic_stop' : paramètres réels trop nombreux
+main.c(1368): warning C4020: 'sfMusic_stop' : paramètres réels trop nombreux
+main.c(1375): warning C4020: 'sfMusic_play' : paramètres réels trop nombreux
+main.c(1500): warning C4552: '+' : opérateur sans effet ; opérateur avec effet secondaire attendu
+main.c(1518): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1519): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1520): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1521): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1538): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(1869): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'char *'
+main.c(1869): warning C4133: 'fonction' : types incompatibles - de 'sfSprite *' à 'char *'
+main.c(1964): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(1978): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(1990): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(1991): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(2018): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2032): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2044): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(2045): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(2072): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2086): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2098): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(2099): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(2160): warning C4133: 'fonction' : types incompatibles - de 'sfText *' à 'char *'
+main.c(3464): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3511): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3517): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3591): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3605): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3617): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(3618): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(3683): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3697): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3709): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(3710): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(3737): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3751): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(3763): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(3764): warning C4133: 'fonction' : types incompatibles - de 'sfRectangleShape *' à 'const sfSprite *'
+main.c(177): warning C4244: 'initialisation' : conversion de 'unsigned int' en 'float', perte possible de données
+main.c(625): warning C4244: 'initialisation' : conversion de 'unsigned int' en 'float', perte possible de données
+main.c(719): warning C4047: 'initialisation' : les niveaux d'indirection de 'char' et de 'void *' sont différents
+main.c(810): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+main.c(194): warning C4101: 'ExplorationMusicCurrentTime' : variable locale non référencée
+main.c(50): warning C4101: 'iPressedSelectObjectToGive' : variable locale non référencée
+main.c(799): warning C4101: 'rect_spGame_Link' : variable locale non référencée
+main.c(1064): warning C4101: 'Color_Transition3' : variable locale non référencée
+main.obj : error LNK2001: symbole externe non résolu __imp__sfTime_asSeconds
+main.obj : error LNK2001: symbole externe non résolu __imp__sfSeconds
+C:\Users\Guillaume\Desktop\TERRE CREUSE 12-05-2018\PROJET TERRE CREUSE\Release\SFML-TERRE-CREUSE.exe : fatal error LNK1120: 2 externes non résolus
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(654,5): error MSB6006: Arrêt de "link.exe" avec le code 1120.
