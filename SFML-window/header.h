@@ -7,7 +7,6 @@
 #include <Windows.h>
 #include <math.h>
 
-
 #pragma region Defines
 
 #ifndef PI
@@ -52,6 +51,12 @@
 
 #pragma region ENNEMY
 
+#pragma region ENNEMY BULLET
+
+#define CHOLESTEROL_BULLET_SPEED 300
+#define CHOLESTEROL_BULLET_ACCELERATION 10
+
+#pragma endregion ENNEMY BULLET
 
 #pragma region BARRE DE VIE ENNEMI
 
@@ -158,6 +163,10 @@
 #define TOWER2_DAMAGES 2
 #define TOWER3_DAMAGES 10
 
+#define TOWER1_HP 10
+#define TOWER2_HP 10
+#define TOWER3_HP 10
+
 #pragma endregion TOWERS
 
 #pragma endregion Defines
@@ -218,6 +227,8 @@ enum e_ENNEMY_DIRECTION
 #pragma endregion enum
 
 #pragma region structures
+
+#pragma region ENNEMY
 
 typedef struct s_Ennemy t_Ennemy;
 struct s_Ennemy
@@ -320,6 +331,7 @@ struct s_Ennemy
 	/*gestion attaque Caillot*/
 	int iIsAttack; // actif si l'ennemi est en train d'attaquer
 	int iTowerToAttackId;
+	int iTowerIsChosen;
 	sfVector2f vPosTowerToAttack;
 	float fTimeSinceLastAttack;
 
@@ -347,6 +359,50 @@ struct s_List
 	t_EnnemyElement* LastElement;
 };
 
+typedef struct s_EnnemyBullet t_EnnemyBullet;
+
+#pragma endregion ENNEMY 
+
+#pragma region ENNEMY BULLET
+
+struct s_EnnemyBullet
+{
+	sfSprite* sprite;
+	sfVector2f vPos;
+	sfVector2f vOrigin;
+	sfVector2f vCurrentVelocity;
+	sfVector2f vCurrentDirection;
+	sfFloatRect boundingBox;
+	float fAngleSprite;
+	float fSpeed; // vitesse
+	float fSpeedMax; // vitesse
+	int iTowerToTargetId; // Id de la tour ciblé
+
+	int Deg; // les dégats correspondent aux dégats de l'ennemi
+	int iHP; // permet de delete la balle quand elle rentre en collision avec une tower
+};
+
+typedef struct s_EnnemyBulletElement t_EnnemyBulletElement;
+
+struct s_EnnemyBulletElement
+{
+	int Id;
+	t_EnnemyBullet* EnnemyBullet;
+	t_EnnemyBulletElement* NextElement;
+	t_EnnemyBulletElement* PreviousElement;
+};
+
+typedef struct s_ListEnnemyBullet t_ListEnnemyBullet;
+
+struct s_ListEnnemyBullet
+{
+	t_EnnemyBulletElement* FirstElement;
+	t_EnnemyBulletElement* LastElement;
+};
+
+#pragma endregion ENNEMY BULLET
+
+#pragma region TOWER SLOT
 
 typedef struct s_TowerSlot t_TowerSlot;
 struct s_TowerSlot
@@ -375,6 +431,10 @@ struct s_ListTowerSlot
 	t_TowerSlotElement* LastElement;
 };
 
+#pragma endregion TOWER SLOT
+
+#pragma region TOWER
+
 typedef struct s_Tower t_Tower;
 
 struct s_Tower
@@ -382,6 +442,7 @@ struct s_Tower
 	sfSprite* sprite;
 	sfSprite* fieldSpr;
 	sfVector2f vPos;
+	sfVector2f vOrigin;
 	t_TowerType TowerType;
 	sfIntRect animRect;
 	t_TowerLevel TowerLevel;
@@ -402,37 +463,18 @@ struct s_Tower
 	int iHP;
 	int iHPMax;
 
-};
+	/*fond noir barre*/
+	sfRectangleShape* RectangleShapeBack;
+	sfVector2f vSizeRectangleShapeBack;
+	sfVector2f vPositionRectangleShapeBack;
+	sfVector2f vOriginRectangleShapeBack;
 
-typedef struct s_EnnemyBullet t_EnnemyBullet;
+	/*barre de vie*/
+	sfRectangleShape* RectangleShape;
+	sfVector2f vSizeRectangleShape;
+	sfVector2f vPositionRectangleShape;
+	sfVector2f vOriginRectangleShape;
 
-struct s_EnnemyBullet
-{
-	sfSprite* sprite;
-	sfVector2f pos;
-	sfVector2f dir;
-	sfFloatRect boundingBox;
-	float angle;
-	float bulletSpeed;
-	int towerFromId;
-};
-
-typedef struct s_EnnemyBulletElement t_EnnemyBulletElement;
-
-struct s_EnnemyBulletElement
-{
-	int Id;
-	t_EnnemyBullet* EnnemyBullet;
-	t_EnnemyBulletElement* NextElement;
-	t_EnnemyBulletElement* PreviousElement;
-};
-
-typedef struct s_ListEnnemyBullet t_ListEnnemyBullet;
-
-struct s_ListEnnemyBullet
-{
-	t_EnnemyBulletElement* FirstElement;
-	t_EnnemyBulletElement* LastElement;
 };
 
 typedef struct s_TowerElement t_TowerElement;
@@ -453,6 +495,10 @@ struct s_ListTower
 	t_TowerElement* LastElement;
 };
 
+#pragma endregion TOWER
+
+#pragma region TOWER CREATION BOUTON
+
 typedef struct s_TowerCreationBtn t_TowerCreationBtn;
 
 struct s_TowerCreationBtn
@@ -464,6 +510,10 @@ struct s_TowerCreationBtn
 	sfVector2f vDir;
 	sfBool isOver;
 };
+
+#pragma endregion TOWER CREATION BOUTON
+
+#pragma region TOWER BULLET
 
 typedef struct s_TowerBullet t_TowerBullet;
 
@@ -495,6 +545,10 @@ struct s_ListBullet
 	t_TowerBulletElement* FirstElement;
 	t_TowerBulletElement* LastElement;
 };
+
+#pragma endregion TOWER BULLET
+
+#pragma region WHITE CELL
 
 typedef struct s_whiteCell t_whiteCell;
 
@@ -534,6 +588,8 @@ struct s_ListWhiteCell
 	t_whiteCellElement* FirstElement;
 	t_whiteCellElement* LastElement;
 };
+
+#pragma endregion WHITE CELL
 
 #pragma endregion structures
 

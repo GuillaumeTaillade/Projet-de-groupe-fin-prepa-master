@@ -268,6 +268,7 @@ int main()
 	sfSprite* Sp_Ennemy1 = createSprite("resources/textures/blue iso petit.png"); // CANCER
 	sfSprite* Sp_Ennemy2 = createSprite("resources/textures/cho iso.png"); // CHOLESTEROL
 	sfSprite* Sp_Ennemy3 = createSprite("resources/textures/roesd2.png"); // CAILLOT
+	sfSprite* Sp_EnnemyBullet = createSprite("resources/textures/bullet2.png"); // PROJECTILE CHOLESTEROL
 	sfSprite* Sp_Map2 = createSprite("resources/textures/Level Test.jpg");
 	sfSprite* Sp_MapMask2 = createSprite("resources/textures/Collision Mask Test.jpg");
 	sfImage* Image_Map2 = sfImage_createFromFile("resources/textures/Collision Mask Test.psd");
@@ -363,6 +364,7 @@ int main()
 
 #pragma endregion GESTION DES BOUTONS //GUILLAUME
 
+		/*ETAT DE JEU JOUER*/
 		if (iGameState == PLAY)
 		{
 
@@ -412,7 +414,8 @@ int main()
 
 #pragma region GESTION EN FONCTION DU TYPE //GUILLAUME
 
-						NewEnnemy->Ennemy->Type = rand() % 3 + 1;
+						//NewEnnemy->Ennemy->Type = rand() % 3 + 1;
+						NewEnnemy->Ennemy->Type = CAILLOT;
 						//printf("%d\n", NewEnnemy->Ennemy->Type);
 						if (NewEnnemy->Ennemy->Type == CANCER)
 						{
@@ -489,6 +492,7 @@ int main()
 							NewEnnemy->Ennemy->Hp = CAILLOT_HP;
 							NewEnnemy->Ennemy->iMoneyValue = CAILLOT_MONEY_VALUE;
 						}
+						NewEnnemy->Ennemy->iTowerIsChosen = 0;
 						NewEnnemy->Ennemy->iIsAttack = sfFalse;
 						NewEnnemy->Ennemy->fTimeSinceLastAttack = 0;
 
@@ -613,7 +617,7 @@ int main()
 
 #pragma region BARRE DE VIE ENNEMI//GUILLAUME
 
-					/*rectangle de fond*/
+						/*rectangle de fond*/
 						NewEnnemy->Ennemy->RectangleShapeBack = sfRectangleShape_create();
 						sfRectangleShape_setFillColor(NewEnnemy->Ennemy->RectangleShapeBack, sfRed);
 						NewEnnemy->Ennemy->vSizeRectangleShapeBack.x = SIZE_HP_X;
@@ -732,7 +736,7 @@ int main()
 					{
 						CurrentEnnemy->Ennemy->fDesiredAngleDirection = ANGLE_BAS_GAUCHE + ANGLE_VARIANT_ISO;
 					}
-
+				
 
 #pragma endregion ANGLE EN FONCTION DE LA COULEUR //GUILLAUME
 
@@ -840,83 +844,158 @@ int main()
 
 #pragma endregion GESTION DIRECTION //GUILLAUME
 
-#pragma region DIRECTION ATTAQUE CAILLOT DE SANG
+#pragma region ATTAQUE CAILLOT DE SANG
 
 				if (CurrentEnnemy->Ennemy->Type == CAILLOT)
 				{
-					CurrentEnnemy->Ennemy->fTimeSinceLastAttack += timeSinceLastFrame;
-					if (CurrentEnnemy->Ennemy->fTimeSinceLastAttack > 5)
+					if (CurrentEnnemy->Ennemy->iIsAttack == sfFalse)
+					{
+						CurrentEnnemy->Ennemy->fTimeSinceLastAttack += timeSinceLastFrame;
+						if (CurrentEnnemy->Ennemy->fTimeSinceLastAttack > 5)
+						{
+							CurrentEnnemy->Ennemy->iTowerIsChosen = 0;
+							CurrentEnnemy->Ennemy->iIsAttack = sfTrue;
+						}
+					}
+
+					if (CurrentEnnemy->Ennemy->iIsAttack == sfTrue)
 					{
 						/*je parcours la liste des tours pour repérer celle qui est le plus proche du caillot de sang*/
 						CurrentTower = ListTower->FirstElement;
 						while (CurrentTower != NULL)
 						{
-
 							if (sfFloatRect_contains(&CurrentTower->Tower->fieldBB, CurrentEnnemy->Ennemy->vCurrentPosition.x, CurrentEnnemy->Ennemy->vCurrentPosition.y))
 							{
-
-								if (CurrentEnnemy->Ennemy->iIsAttack == sfFalse)
+								/*détection de la tour la plus proche avec le champ d'action de cette même tour*/
+								
+								if (CurrentEnnemy->Ennemy->iTowerIsChosen == 0)
 								{
-									CurrentEnnemy->Ennemy->iIsAttack = sfTrue;
 									CurrentEnnemy->Ennemy->iTowerToAttackId = CurrentTower->Id;
+									CurrentEnnemy->Ennemy->iTowerIsChosen = 1;
 								}
-							}
-
-
-							if (CurrentEnnemy->Ennemy->iIsAttack == sfTrue)
-							{
+								
 								if (CurrentTower->Id == CurrentEnnemy->Ennemy->iTowerToAttackId)
 								{
 									CurrentEnnemy->Ennemy->vPosTowerToAttack.x = CurrentTower->Tower->vPos.x;
 									CurrentEnnemy->Ennemy->vPosTowerToAttack.y = CurrentTower->Tower->vPos.y;
+
 									CurrentEnnemy->Ennemy->vCurrentDirection.x = CurrentEnnemy->Ennemy->vPosTowerToAttack.x - CurrentEnnemy->Ennemy->vCurrentPosition.x;
 									CurrentEnnemy->Ennemy->vCurrentDirection.y = CurrentEnnemy->Ennemy->vPosTowerToAttack.y - CurrentEnnemy->Ennemy->vCurrentPosition.y;
 									CurrentEnnemy->Ennemy->fDesiredAngleDirection = GetAngleDegreeFromVector(CurrentEnnemy->Ennemy->vCurrentDirection);
 									CurrentEnnemy->Ennemy->fCurrentAngleDirection = CurrentEnnemy->Ennemy->fDesiredAngleDirection;
 									CurrentEnnemy->Ennemy->vCurrentDirection = GetDirectionFromAngleDegrees(CurrentEnnemy->Ennemy->fCurrentAngleDirection);
-									if (SpriteIsOverPosition(CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vOrigin, CurrentTower->Tower->vPos, CurrentEnnemy->Ennemy->vOrigin))
+									if (sfFloatRect_contains(&CurrentTower->Tower->boundingBox, CurrentEnnemy->Ennemy->vCurrentPosition.x, CurrentEnnemy->Ennemy->vCurrentPosition.y))
 									{
 										CurrentEnnemy->Ennemy->fTimeSinceLastAttack = 0;
-										/*dégats sur la tour*/
 
+										/*dégats sur la tour*/
+										CurrentTower->Tower->iHP -= CurrentEnnemy->Ennemy->Deg;
 										CurrentEnnemy->Ennemy->iIsAttack = sfFalse;
+										CurrentEnnemy->Ennemy->fTimeSinceLastAttack = 0;
 									}
+
 								}
 							}
-
+							
+							
 							CurrentTower = CurrentTower->NextElement;
 						}
 					}
 				}
 
-#pragma endregion DIRECTION ATTAQUE CAILLOT DE SANG
+#pragma endregion ATTAQUE CAILLOT DE SANG
 
 #pragma region ATTAQUE CHOLESTEROL
 
 				if (CurrentEnnemy->Ennemy->Type == CHOLESTEROL)
 				{
-					CurrentEnnemy->Ennemy->fTimeSinceLastAttack += timeSinceLastFrame;
-					if (CurrentEnnemy->Ennemy->fTimeSinceLastAttack > 5)
+					if (CurrentEnnemy->Ennemy->iIsAttack == sfFalse)
+					{
+						CurrentEnnemy->Ennemy->fTimeSinceLastAttack += timeSinceLastFrame;
+						if (CurrentEnnemy->Ennemy->fTimeSinceLastAttack > 3)
+						{
+							CurrentEnnemy->Ennemy->iTowerIsChosen = 0;
+							CurrentEnnemy->Ennemy->iIsAttack = sfTrue;
+						}
+					}
+					/*attaque du cholesterol*/
+					if (CurrentEnnemy->Ennemy->iIsAttack == sfTrue)
 					{
 						/*je parcours la liste des tours pour repérer celle qui est le plus proche du caillot de sang*/
 						CurrentTower = ListTower->FirstElement;
 						while (CurrentTower != NULL)
 						{
+							/*détection de la tour la plus proche avec le champ d'action de cette même tour*/
 							if (sfFloatRect_contains(&CurrentTower->Tower->fieldBB, CurrentEnnemy->Ennemy->vCurrentPosition.x, CurrentEnnemy->Ennemy->vCurrentPosition.y))
 							{
-								if (CurrentEnnemy->Ennemy->iIsAttack == sfFalse)
+								if (CurrentEnnemy->Ennemy->iTowerIsChosen == 0)
 								{
-									CurrentEnnemy->Ennemy->iIsAttack = sfTrue;
 									CurrentEnnemy->Ennemy->iTowerToAttackId = CurrentTower->Id;
+									CurrentEnnemy->Ennemy->iTowerIsChosen = 1;
 								}
 							}
-							CurrentTower = CurrentTower->NextElement;
 
+							if (CurrentEnnemy->Ennemy->iTowerToAttackId == CurrentTower->Id)
+							{
+								CurrentEnnemy->Ennemy->vPosTowerToAttack.x = CurrentTower->Tower->vPos.x;
+								CurrentEnnemy->Ennemy->vPosTowerToAttack.y = CurrentTower->Tower->vPos.y;
+
+								/*création d'une balle*/
+								NewEnnemyBullet = AddElementBeginListEnnemyBullet(ListEnnemyBullet);
+								NewEnnemyBullet->EnnemyBullet = malloc(sizeof(t_EnnemyBullet));
+
+								NewEnnemyBullet->EnnemyBullet->iTowerToTargetId = CurrentEnnemy->Ennemy->iTowerToAttackId;
+								NewEnnemyBullet->EnnemyBullet->sprite = Sp_EnnemyBullet;
+								NewEnnemyBullet->EnnemyBullet->Deg = CurrentEnnemy->Ennemy->Deg;
+								NewEnnemyBullet->EnnemyBullet->fSpeedMax = CHOLESTEROL_BULLET_SPEED;
+								NewEnnemyBullet->EnnemyBullet->fSpeed = 0;
+								NewEnnemyBullet->EnnemyBullet->iHP = 1;
+
+								NewEnnemyBullet->EnnemyBullet->vOrigin.x = sfSprite_getGlobalBounds(NewEnnemyBullet->EnnemyBullet->sprite).width / 2;
+								NewEnnemyBullet->EnnemyBullet->vOrigin.y = sfSprite_getGlobalBounds(NewEnnemyBullet->EnnemyBullet->sprite).height / 2;
+								sfSprite_setOrigin(NewEnnemyBullet->EnnemyBullet->sprite, NewEnnemyBullet->EnnemyBullet->vOrigin);
+								NewEnnemyBullet->EnnemyBullet->vPos.x = CurrentEnnemy->Ennemy->vCurrentPosition.x;
+								NewEnnemyBullet->EnnemyBullet->vPos.y = CurrentEnnemy->Ennemy->vCurrentPosition.y;
+								sfSprite_setPosition(NewEnnemyBullet->EnnemyBullet->sprite, NewEnnemyBullet->EnnemyBullet->vPos);
+								NewEnnemyBullet->EnnemyBullet->vCurrentDirection.x = CurrentTower->Tower->vPos.x - NewEnnemyBullet->EnnemyBullet->vPos.x;
+								NewEnnemyBullet->EnnemyBullet->vCurrentDirection.y = CurrentTower->Tower->vPos.y - NewEnnemyBullet->EnnemyBullet->vPos.y;
+								NewEnnemyBullet->EnnemyBullet->fAngleSprite = GetAngleDegreeFromVector(NewEnnemyBullet->EnnemyBullet->vCurrentDirection);
+								sfSprite_setRotation(NewEnnemyBullet->EnnemyBullet->sprite, NewEnnemyBullet->EnnemyBullet->fAngleSprite);
+
+								CurrentEnnemy->Ennemy->iIsAttack = sfFalse;
+								CurrentEnnemy->Ennemy->fTimeSinceLastAttack = 0;
+							}
+							CurrentTower = CurrentTower->NextElement;
 						}
 					}
 				}
 
 #pragma endregion ATTAQUE CHOLESTEROL
+
+#pragma region GESTION CHOLESTEROL
+
+				if (CurrentEnnemy->Ennemy->Type == CHOLESTEROL)
+				{
+					if (CurrentEnnemy->Ennemy->Hp < (CurrentEnnemy->Ennemy->HpMax * 0.7))
+					{
+						CurrentEnnemy->Ennemy->iSize = MEDIUM;
+						CurrentEnnemy->Ennemy->Deg = 3;
+						CurrentEnnemy->Ennemy->fSpeedMax = CHOLESTEROL_SPEED * 1.5;
+						CurrentEnnemy->Ennemy->vScale.x = 0.6;
+						CurrentEnnemy->Ennemy->vScale.y = 0.6;
+					}
+
+					if (CurrentEnnemy->Ennemy->Hp < (CurrentEnnemy->Ennemy->HpMax * 0.3))
+					{
+						CurrentEnnemy->Ennemy->iSize = SMALL;
+						CurrentEnnemy->Ennemy->Deg = 1;
+						CurrentEnnemy->Ennemy->fSpeedMax = CHOLESTEROL_SPEED * 2;
+						CurrentEnnemy->Ennemy->vScale.x = 0.3;
+						CurrentEnnemy->Ennemy->vScale.y = 0.3;
+					}
+				}
+
+#pragma endregion GESTION CHOLESTEROL
 
 				/*GESTION VELOCITE / VITESSE*/
 
@@ -992,32 +1071,6 @@ int main()
 
 #pragma endregion CALCUL VIE ENNEMI
 
-#pragma region GESTION CHOLESTEROL
-
-				if (CurrentEnnemy->Ennemy->Type == CHOLESTEROL)
-				{
-					if (CurrentEnnemy->Ennemy->Hp < (CurrentEnnemy->Ennemy->HpMax * 0.7))
-					{
-						CurrentEnnemy->Ennemy->iSize = MEDIUM;
-						CurrentEnnemy->Ennemy->Deg = CHOLESTEROL_DEG * 0.7;
-						CurrentEnnemy->Ennemy->fSpeedMax = CHOLESTEROL_SPEED * 1.5;
-						CurrentEnnemy->Ennemy->vScale.x = 0.6;
-						CurrentEnnemy->Ennemy->vScale.y = 0.6;
-
-					}
-
-					if (CurrentEnnemy->Ennemy->Hp < (CurrentEnnemy->Ennemy->HpMax * 0.3))
-					{
-						CurrentEnnemy->Ennemy->iSize = SMALL;
-						CurrentEnnemy->Ennemy->Deg = CHOLESTEROL_DEG * 0.3;
-						CurrentEnnemy->Ennemy->fSpeedMax = CHOLESTEROL_SPEED * 2;
-						CurrentEnnemy->Ennemy->vScale.x = 0.3;
-						CurrentEnnemy->Ennemy->vScale.y = 0.3;
-					}
-				}
-
-#pragma endregion GESTION CHOLESTEROL
-
 #pragma region PERTE DE PV OBJECTIF
 
 				if (CurrentEnnemy->Ennemy->vCurrentPosition.x < CurrentEnnemy->Ennemy->vTargetPostion.x + 50
@@ -1058,6 +1111,61 @@ int main()
 			}
 
 #pragma endregion READ LIST ENNEMY CALCUL //GUILLAUME
+
+#pragma region CALCUL LIST ENNEMY BULLET //GUILLAUME
+
+			CurrentEnnemyBullet = ListEnnemyBullet->FirstElement;
+			while (CurrentEnnemyBullet != NULL)
+			{
+				/*VITESSE DE LA BALLE*/
+				if (CurrentEnnemyBullet->EnnemyBullet->fSpeed < 0)
+				{
+					CurrentEnnemyBullet->EnnemyBullet->fSpeed = 0;
+				}
+
+				if (CurrentEnnemyBullet->EnnemyBullet->fSpeed < CurrentEnnemyBullet->EnnemyBullet->fSpeedMax)
+				{
+					CurrentEnnemyBullet->EnnemyBullet->fSpeed += CHOLESTEROL_BULLET_ACCELERATION;
+				}
+				else if (CurrentEnnemyBullet->EnnemyBullet->fSpeed > CurrentEnnemyBullet->EnnemyBullet->fSpeedMax)
+				{
+					CurrentEnnemyBullet->EnnemyBullet->fSpeed -= CHOLESTEROL_BULLET_ACCELERATION;
+				}
+
+				/*DIRECTION DE LA BALLE*/
+				/*VELOCITY*/
+				CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity.x = CurrentEnnemyBullet->EnnemyBullet->vCurrentDirection.x * CurrentEnnemyBullet->EnnemyBullet->fSpeed;
+				CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity.y = CurrentEnnemyBullet->EnnemyBullet->vCurrentDirection.y * CurrentEnnemyBullet->EnnemyBullet->fSpeed;
+				CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity = Truncate(CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity, CurrentEnnemyBullet->EnnemyBullet->fSpeedMax);
+
+				/*POSIITON*/
+				CurrentEnnemyBullet->EnnemyBullet->vPos.x += CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity.x * timeSinceLastFrame;
+				CurrentEnnemyBullet->EnnemyBullet->vPos.y += CurrentEnnemyBullet->EnnemyBullet->vCurrentVelocity.y * timeSinceLastFrame;
+
+				/*COLLISION AVEC UNE TOWER*/
+				CurrentTower = ListTower->FirstElement;
+				while (CurrentTower != NULL)
+				{
+					if (CurrentTower->Id == CurrentEnnemyBullet->EnnemyBullet->iTowerToTargetId)
+					{
+						if (SpriteIsOverPosition(CurrentEnnemyBullet->EnnemyBullet->vPos, CurrentEnnemyBullet->EnnemyBullet->vOrigin, CurrentTower->Tower->vPos, CurrentEnnemyBullet->EnnemyBullet->vOrigin))
+						{
+							CurrentTower->Tower->iHP -= CurrentEnnemyBullet->EnnemyBullet->Deg;
+							CurrentEnnemyBullet->EnnemyBullet->iHP = 0;
+						}
+					}
+					CurrentTower = CurrentTower->NextElement;
+				}
+				if (CurrentEnnemyBullet->EnnemyBullet->iHP <= 0)
+				{
+					DeleteElementByIdEnnemyBullet(ListEnnemyBullet, CurrentEnnemyBullet->Id);
+					break;
+				}
+				else
+					CurrentEnnemyBullet = CurrentEnnemyBullet->NextElement;
+			}
+
+#pragma endregion CALCUL LIST ENNEMY BULLET //GUILLAUME
 
 		}
 
@@ -1139,7 +1247,6 @@ int main()
 
 		/*Lecture de boucle TOUR pour le traitement*/
 		CurrentTower = ListTower->FirstElement;
-
 		while (CurrentTower != NULL)
 		{
 			vMousePos = sfMouse_getPosition(window);
@@ -1168,7 +1275,41 @@ int main()
 					}
 				}
 			}
-			CurrentTower = CurrentTower->NextElement;
+
+#pragma region BARRE DE VIE TOWER //GUILLAUME
+
+			/*RECTANGLE SHAPE BACK*/
+			CurrentTower->Tower->vPositionRectangleShapeBack.x = CurrentTower->Tower->vPos.x;
+			CurrentTower->Tower->vPositionRectangleShapeBack.y = CurrentTower->Tower->vPos.y - 150;
+			sfRectangleShape_setPosition(CurrentTower->Tower->RectangleShapeBack, CurrentTower->Tower->vPositionRectangleShapeBack);
+
+			/*RECTANGLE SHAPE*/
+			if (CurrentTower->Tower->iHP > 0)
+			{
+				CurrentTower->Tower->vSizeRectangleShape.x = SIZE_HP_X / (CurrentTower->Tower->iHPMax / CurrentTower->Tower->iHP);
+				CurrentTower->Tower->vSizeRectangleShape.y = SIZE_HP_Y;
+			}
+			else
+				CurrentTower->Tower->vSizeRectangleShape.x = 0;
+			
+			sfRectangleShape_setSize(CurrentTower->Tower->RectangleShape, CurrentTower->Tower->vSizeRectangleShape);
+			CurrentTower->Tower->vOriginRectangleShape.x = sfRectangleShape_getGlobalBounds(CurrentTower->Tower->RectangleShape).width / 2;
+			CurrentTower->Tower->vOriginRectangleShape.y = sfRectangleShape_getGlobalBounds(CurrentTower->Tower->RectangleShape).height / 2;
+			sfRectangleShape_setOrigin(CurrentTower->Tower->RectangleShape, CurrentTower->Tower->vOriginRectangleShape);
+			CurrentTower->Tower->vPositionRectangleShape.x = sfRectangleShape_getGlobalBounds(CurrentTower->Tower->RectangleShapeBack).left + CurrentTower->Tower->vOriginRectangleShape.x + sfRectangleShape_getOutlineThickness(CurrentTower->Tower->RectangleShapeBack);
+			CurrentTower->Tower->vPositionRectangleShape.y = CurrentTower->Tower->vPositionRectangleShapeBack.y;
+			sfRectangleShape_setPosition(CurrentTower->Tower->RectangleShape, CurrentTower->Tower->vPositionRectangleShape);
+
+#pragma endregion BARRE DE VIE TOWER //GUILLAUME
+
+			/*delete de la tour //Guillaume*/
+			/*if (CurrentTower->Tower->iHP <= 0)
+			{
+				DeleteElementByIdTower(ListTower, CurrentTower->Id);
+				break;
+			}
+			else*/
+				CurrentTower = CurrentTower->NextElement;
 		}
 
 		////affichage du champ de vision de la tour selectionnée
@@ -1676,6 +1817,41 @@ int main()
 						sfSprite_setTextureRect(NewTower->Tower->sprite, NewTower->Tower->animRect);
 						sfSprite_setPosition(NewTower->Tower->sprite, NewTower->Tower->vPos);
 						NewTower->Tower->boundingBox = sfSprite_getGlobalBounds(NewTower->Tower->sprite);
+
+#pragma region BARRE DE VIE //GUILLAUME
+
+						/*VIE DE LA TOUR*/
+						NewTower->Tower->iHPMax = TOWER1_HP;
+						NewTower->Tower->iHP = TOWER1_HP;
+
+						/*RECTANGLE DE FOND*/
+						NewTower->Tower->RectangleShapeBack = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShapeBack, sfRed);
+						NewTower->Tower->vSizeRectangleShapeBack.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShapeBack.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vSizeRectangleShapeBack);
+						NewTower->Tower->vOriginRectangleShapeBack.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).width / 2;
+						NewTower->Tower->vOriginRectangleShapeBack.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vOriginRectangleShapeBack);
+						NewTower->Tower->vPositionRectangleShapeBack.x = 0;
+						NewTower->Tower->vPositionRectangleShapeBack.y = 0;
+						sfRectangleShape_setOutlineThickness(NewTower->Tower->RectangleShapeBack, 1);
+						sfRectangleShape_setOutlineColor(NewTower->Tower->RectangleShapeBack, sfBlack);
+
+						/*RECTANGLE DE VIE*/
+						NewTower->Tower->RectangleShape = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShape, sfGreen);
+						NewTower->Tower->vSizeRectangleShape.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShape.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShape, NewTower->Tower->vSizeRectangleShape);
+						NewTower->Tower->vOriginRectangleShape.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).width / 2;
+						NewTower->Tower->vOriginRectangleShape.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShape, NewTower->Tower->vOriginRectangleShape);
+						NewTower->Tower->vPositionRectangleShape.x = 0;
+						NewTower->Tower->vPositionRectangleShape.y = 0;
+
+#pragma endregion BARRE DE VIE //GUILLAUME
+
 						//NewTower->Tower->isOn = sfTrue;
 						isOpened = sfFalse;
 						isInBuildChoice = sfFalse;
@@ -1741,6 +1917,41 @@ int main()
 						NewTower->Tower->boundingBox = sfSprite_getGlobalBounds(NewTower->Tower->sprite);
 						//NewTower->Tower->bulletSpeed = 0.7;
 						//NewTower->Tower->isOn = sfTrue;
+
+#pragma region BARRE DE VIE //GUILLAUME
+
+						/*VIE DE LA TOUR*/
+						NewTower->Tower->iHPMax = TOWER2_HP;
+						NewTower->Tower->iHP = TOWER2_HP;
+
+						/*RECTANGLE DE FOND*/
+						NewTower->Tower->RectangleShapeBack = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShapeBack, sfRed);
+						NewTower->Tower->vSizeRectangleShapeBack.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShapeBack.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vSizeRectangleShapeBack);
+						NewTower->Tower->vOriginRectangleShapeBack.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).width / 2;
+						NewTower->Tower->vOriginRectangleShapeBack.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vOriginRectangleShapeBack);
+						NewTower->Tower->vPositionRectangleShapeBack.x = 0;
+						NewTower->Tower->vPositionRectangleShapeBack.y = 0;
+						sfRectangleShape_setOutlineThickness(NewTower->Tower->RectangleShapeBack, 1);
+						sfRectangleShape_setOutlineColor(NewTower->Tower->RectangleShapeBack, sfBlack);
+
+						/*RECTANGLE DE VIE*/
+						NewTower->Tower->RectangleShape = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShape, sfGreen);
+						NewTower->Tower->vSizeRectangleShape.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShape.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShape, NewTower->Tower->vSizeRectangleShape);
+						NewTower->Tower->vOriginRectangleShape.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).width / 2;
+						NewTower->Tower->vOriginRectangleShape.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShape, NewTower->Tower->vOriginRectangleShape);
+						NewTower->Tower->vPositionRectangleShape.x = 0;
+						NewTower->Tower->vPositionRectangleShape.y = 0;
+
+#pragma endregion BARRE DE VIE //GUILLAUME
+
 						isOpened = sfFalse;
 						isInBuildChoice = sfFalse;
 						/*mettre en fonction*/
@@ -1802,6 +2013,41 @@ int main()
 						sfSprite_setTextureRect(NewTower->Tower->sprite, NewTower->Tower->animRect);
 						sfSprite_setPosition(NewTower->Tower->sprite, NewTower->Tower->vPos);
 						NewTower->Tower->boundingBox = sfSprite_getGlobalBounds(NewTower->Tower->sprite);
+
+#pragma region BARRE DE VIE //GUILLAUME
+
+						/*VIE DE LA TOUR*/
+						NewTower->Tower->iHPMax = TOWER3_HP;
+						NewTower->Tower->iHP = TOWER3_HP;
+
+						/*RECTANGLE DE FOND*/
+						NewTower->Tower->RectangleShapeBack = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShapeBack, sfRed);
+						NewTower->Tower->vSizeRectangleShapeBack.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShapeBack.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vSizeRectangleShapeBack);
+						NewTower->Tower->vOriginRectangleShapeBack.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).width / 2;
+						NewTower->Tower->vOriginRectangleShapeBack.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShapeBack).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShapeBack, NewTower->Tower->vOriginRectangleShapeBack);
+						NewTower->Tower->vPositionRectangleShapeBack.x = 0;
+						NewTower->Tower->vPositionRectangleShapeBack.y = 0;
+						sfRectangleShape_setOutlineThickness(NewTower->Tower->RectangleShapeBack, 1);
+						sfRectangleShape_setOutlineColor(NewTower->Tower->RectangleShapeBack, sfBlack);
+
+						/*RECTANGLE DE VIE*/
+						NewTower->Tower->RectangleShape = sfRectangleShape_create();
+						sfRectangleShape_setFillColor(NewTower->Tower->RectangleShape, sfGreen);
+						NewTower->Tower->vSizeRectangleShape.x = SIZE_HP_X;
+						NewTower->Tower->vSizeRectangleShape.y = SIZE_HP_Y;
+						sfRectangleShape_setSize(NewTower->Tower->RectangleShape, NewTower->Tower->vSizeRectangleShape);
+						NewTower->Tower->vOriginRectangleShape.x = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).width / 2;
+						NewTower->Tower->vOriginRectangleShape.y = sfRectangleShape_getGlobalBounds(NewTower->Tower->RectangleShape).height / 2;
+						sfRectangleShape_setOrigin(NewTower->Tower->RectangleShape, NewTower->Tower->vOriginRectangleShape);
+						NewTower->Tower->vPositionRectangleShape.x = 0;
+						NewTower->Tower->vPositionRectangleShape.y = 0;
+
+#pragma endregion BARRE DE VIE //GUILLAUME
+
 						NewTower->Tower->bulletSpeed = 1;
 						NewTower->Tower->isOn = sfFalse;
 						NewTower->Tower->tStartSpawnWhiteCell = 0;
@@ -1861,6 +2107,106 @@ int main()
 
 #pragma endregion GESTION MENU CONSTRUCTION //SEB
 
+#pragma region AFFICHAGE ENNEMY //GUILLAUME
+
+		CurrentEnnemy = ListEnnemy->FirstElement;
+		while (CurrentEnnemy != NULL)
+		{
+			/*AFFICHAGE ENNEMI*/
+			sfSprite_setTextureRect(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->animRect);
+			sfSprite_setScale(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->vScale);
+			sfSprite_setPosition(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->vCurrentPosition);
+			sfSprite_setRotation(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->fAngleSprite);
+			sfRenderWindow_drawSprite(window, CurrentEnnemy->Ennemy->sp_Ennemy, NULL);
+
+			/*AFFICHAGE BARRE DE VIE*/
+			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShapeBack);
+			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShapeBack, NULL);
+			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShape);
+			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShape, NULL);
+
+			/*CurrentEnnemy->Ennemy->vPositionRectangleShapeBack.x = CurrentEnnemy->Ennemy->vCurrentPosition.x - CurrentEnnemy->Ennemy->vOrigin.x;
+			CurrentEnnemy->Ennemy->vPositionRectangleShapeBack.y = CurrentEnnemy->Ennemy->vCurrentPosition.y - CurrentEnnemy->Ennemy->vOrigin.y - 8;
+			CurrentEnnemy->Ennemy->vPositionRectangleShape.x = CurrentEnnemy->Ennemy->vCurrentPosition.x - CurrentEnnemy->Ennemy->vOrigin.x;
+			CurrentEnnemy->Ennemy->vPositionRectangleShape.y = CurrentEnnemy->Ennemy->vCurrentPosition.y - CurrentEnnemy->Ennemy->vOrigin.y - 8;
+			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShapeBack);
+			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShape, CurrentEnnemy->Ennemy->vPositionRectangleShape);
+			CurrentEnnemy->Ennemy->vSizeRectangleShape.x =(CurrentEnnemy->Ennemy->Hp / CurrentEnnemy->Ennemy->HpMax) * LIFEBAR_MAX_SIZE_X;
+			if (CurrentEnnemy->Ennemy->vSizeRectangleShape.x <= 0)
+			{
+			CurrentEnnemy->Ennemy->vSizeRectangleShape.x = 0;
+			}
+			sfRectangleShape_setSize(CurrentEnnemy->Ennemy->RectangleShape, CurrentEnnemy->Ennemy->vSizeRectangleShape);
+			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShapeBack, NULL);
+			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShape, NULL);*/
+
+			/*AFFICHAGE DES VERTEX*/
+
+#pragma region AFFICHAGE DES VERTEX
+
+			/*CONTROL POINT*/
+			SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			/*RIGHT POINT*/
+			SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vRightControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			/*LEFT POINT*/
+			SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vLeftStartPoint, CurrentEnnemy->Ennemy->vLeftControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			/*SIDE RIGHT POINT*/
+			SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vSideRightControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			/*SIDE LEFT POINT*/
+			SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vLeftStartPoint, CurrentEnnemy->Ennemy->vSideLeftControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			//////DRAW WANDER CIRCLE//////
+			//circleDirection.x = CurrentEnnemy->Ennemy->vWanderCenter.x - CurrentEnnemy->Ennemy->vCurrentPosition.x;
+			//circleDirection.y = CurrentEnnemy->Ennemy->vWanderCenter.y - CurrentEnnemy->Ennemy->vCurrentPosition.y;
+
+			//sfCircleShape_setPosition(circleWander, CurrentEnnemy->Ennemy->vWanderCenter);
+			//sfRenderWindow_drawCircleShape(window, circleWander, NULL);
+
+			///*POUR LE WANDER*/
+			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vWanderCenter, sfCyan);
+			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			//VertexArray = GetLine(CurrentEnnemy->Ennemy->vWanderCenter, CurrentEnnemy->Ennemy->vWanderDirection, sfYellow);
+			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			///*steering*/
+			//VertexArray = GetLine(CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vSteering, sfGreen);
+			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
+
+			/*velocity*/
+			/*VertexArray = GetLine(CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vRightControlPoint, sfBlack);
+			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);*/
+
+#pragma endregion AFFICHAGE DES VERTEX
+
+			CurrentEnnemy = CurrentEnnemy->NextElement;
+		}
+
+#pragma endregion AFFICHAGE ENNEMY //GUILLAUME
+
+#pragma region AFFICHAGE TIRS ENNEMY //GUILLAUME
+
+		CurrentEnnemyBullet = ListEnnemyBullet->FirstElement;
+		while (CurrentEnnemyBullet != NULL)
+		{
+			sfSprite_setPosition(CurrentEnnemyBullet->EnnemyBullet->sprite, CurrentEnnemyBullet->EnnemyBullet->vPos);
+			sfSprite_setRotation(CurrentEnnemyBullet->EnnemyBullet->sprite, CurrentEnnemyBullet->EnnemyBullet->fAngleSprite);
+			sfRenderWindow_drawSprite(window, CurrentEnnemyBullet->EnnemyBullet->sprite, NULL);
+
+			CurrentEnnemyBullet = CurrentEnnemyBullet->NextElement;
+		}
+
+#pragma endregion AFFICHAGE TIRS ENNEMY //GUILLAUME
+
 #pragma region LECTURE AFFICHAGE DES TOURS //SEB
 
 		/*Lecture de liste TOUR pour l'affichage*/
@@ -1901,6 +2247,17 @@ int main()
 				sfRenderWindow_drawSprite(window, CurrentTower->Tower->fieldSpr, NULL);
 			}*/
 			sfRenderWindow_drawSprite(window, CurrentTower->Tower->sprite, NULL);
+
+#pragma region BARRE DE VIE TOWER //GUILLAUME
+
+			/*AFFICHAGE BARRE DE VIE*/
+			sfRectangleShape_setPosition(CurrentTower->Tower->RectangleShapeBack, CurrentTower->Tower->vPositionRectangleShapeBack);
+			sfRenderWindow_drawRectangleShape(window, CurrentTower->Tower->RectangleShapeBack, NULL);
+			sfRectangleShape_setPosition(CurrentTower->Tower->RectangleShapeBack, CurrentTower->Tower->vPositionRectangleShape);
+			sfRenderWindow_drawRectangleShape(window, CurrentTower->Tower->RectangleShape, NULL);
+
+#pragma endregion BARRE DE VIE //TOWER
+
 			CurrentTower = CurrentTower->NextElement;
 
 		}
@@ -2105,92 +2462,6 @@ int main()
 		}
 
 #pragma endregion LECTURE TRAITEMENT TIRS //SEB
-
-#pragma region AFFICHAGE ENNEMY //GUILLAUME
-
-		CurrentEnnemy = ListEnnemy->FirstElement;
-		while (CurrentEnnemy != NULL)
-		{
-			/*AFFICHAGE ENNEMI*/
-			sfSprite_setTextureRect(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->animRect);
-			sfSprite_setScale(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->vScale);
-			sfSprite_setPosition(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->vCurrentPosition);
-			sfSprite_setRotation(CurrentEnnemy->Ennemy->sp_Ennemy, CurrentEnnemy->Ennemy->fAngleSprite);
-			sfRenderWindow_drawSprite(window, CurrentEnnemy->Ennemy->sp_Ennemy, NULL);
-
-			/*AFFICHAGE BARRE DE VIE*/
-			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShapeBack);
-			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShapeBack, NULL);
-			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShape);
-			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShape, NULL);
-
-			/*CurrentEnnemy->Ennemy->vPositionRectangleShapeBack.x = CurrentEnnemy->Ennemy->vCurrentPosition.x - CurrentEnnemy->Ennemy->vOrigin.x;
-			CurrentEnnemy->Ennemy->vPositionRectangleShapeBack.y = CurrentEnnemy->Ennemy->vCurrentPosition.y - CurrentEnnemy->Ennemy->vOrigin.y - 8;
-			CurrentEnnemy->Ennemy->vPositionRectangleShape.x = CurrentEnnemy->Ennemy->vCurrentPosition.x - CurrentEnnemy->Ennemy->vOrigin.x;
-			CurrentEnnemy->Ennemy->vPositionRectangleShape.y = CurrentEnnemy->Ennemy->vCurrentPosition.y - CurrentEnnemy->Ennemy->vOrigin.y - 8;
-			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShapeBack, CurrentEnnemy->Ennemy->vPositionRectangleShapeBack);
-			sfRectangleShape_setPosition(CurrentEnnemy->Ennemy->RectangleShape, CurrentEnnemy->Ennemy->vPositionRectangleShape);
-			CurrentEnnemy->Ennemy->vSizeRectangleShape.x =(CurrentEnnemy->Ennemy->Hp / CurrentEnnemy->Ennemy->HpMax) * LIFEBAR_MAX_SIZE_X;
-			if (CurrentEnnemy->Ennemy->vSizeRectangleShape.x <= 0)
-			{
-			CurrentEnnemy->Ennemy->vSizeRectangleShape.x = 0;
-			}
-			sfRectangleShape_setSize(CurrentEnnemy->Ennemy->RectangleShape, CurrentEnnemy->Ennemy->vSizeRectangleShape);
-			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShapeBack, NULL);
-			sfRenderWindow_drawRectangleShape(window, CurrentEnnemy->Ennemy->RectangleShape, NULL);*/
-
-			/*AFFICHAGE DES VERTEX*/
-
-#pragma region AFFICHAGE DES VERTEX
-
-			///*CONTROL POINT*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vControlPoint, sfBlack);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			///*RIGHT POINT*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vRightControlPoint, sfBlack);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			///*LEFT POINT*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vLeftStartPoint, CurrentEnnemy->Ennemy->vLeftControlPoint, sfBlack);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			///*SIDE RIGHT POINT*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vSideRightControlPoint, sfBlack);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			///*SIDE LEFT POINT*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vLeftStartPoint, CurrentEnnemy->Ennemy->vSideLeftControlPoint, sfBlack);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			//////DRAW WANDER CIRCLE//////
-			//circleDirection.x = CurrentEnnemy->Ennemy->vWanderCenter.x - CurrentEnnemy->Ennemy->vCurrentPosition.x;
-			//circleDirection.y = CurrentEnnemy->Ennemy->vWanderCenter.y - CurrentEnnemy->Ennemy->vCurrentPosition.y;
-
-			//sfCircleShape_setPosition(circleWander, CurrentEnnemy->Ennemy->vWanderCenter);
-			//sfRenderWindow_drawCircleShape(window, circleWander, NULL);
-
-			///*POUR LE WANDER*/
-			//SetLineBetweenPoints(VertexArray, Vertex, CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vWanderCenter, sfCyan);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			//VertexArray = GetLine(CurrentEnnemy->Ennemy->vWanderCenter, CurrentEnnemy->Ennemy->vWanderDirection, sfYellow);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			///*steering*/
-			//VertexArray = GetLine(CurrentEnnemy->Ennemy->vCurrentPosition, CurrentEnnemy->Ennemy->vSteering, sfGreen);
-			//sfRenderWindow_drawVertexArray(window, VertexArray, NULL);
-
-			/*velocity*/
-			/*VertexArray = GetLine(CurrentEnnemy->Ennemy->vRightStartPoint, CurrentEnnemy->Ennemy->vRightControlPoint, sfBlack);
-			sfRenderWindow_drawVertexArray(window, VertexArray, NULL);*/
-
-#pragma endregion AFFICHAGE DES VERTEX
-
-			CurrentEnnemy = CurrentEnnemy->NextElement;
-		}
-
-#pragma endregion AFFICHAGE ENNEMY //GUILLAUME
 
 #pragma region LECTURE AFFICHAGE TIRS //SEB
 

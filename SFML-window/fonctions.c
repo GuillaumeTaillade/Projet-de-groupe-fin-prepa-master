@@ -133,6 +133,20 @@ int SpriteIsOverPosition(sfVector2f _vPositionPerso, sfVector2f _vOriginPerso, s
 	return 1;
 }
 
+int SpriteIsOverGlobalBounds(sfFloatRect _GlobalBoundsPerso, sfFloatRect _GlobalBoundsObject)
+{
+	if ((_GlobalBoundsPerso.left >= _GlobalBoundsObject.left + _GlobalBoundsObject.width) // coté gauche perso plus à droite que le coté droit de l'objet
+		|| (_GlobalBoundsPerso.left + _GlobalBoundsPerso.width <= _GlobalBoundsObject.left) // coté droit perso plus à gauche que le coté gauche de l'objet
+		|| (_GlobalBoundsPerso.top >= _GlobalBoundsObject.top + _GlobalBoundsObject.height) // coté gauche perso plus à droite que le coté droit de l'objet
+		|| (_GlobalBoundsPerso.top + _GlobalBoundsPerso.height <= _GlobalBoundsObject.top)) // bas du perso au dessus du haut de l'objet
+	// si ses conditions sont remplis alors le perso est hors de l'objet
+	{
+		return 0;
+	}
+	// si le personnage est sur l'objet
+	return 1;
+}
+
 //void Collider(sfImage* _collid, Player* player)
 //{
 //
