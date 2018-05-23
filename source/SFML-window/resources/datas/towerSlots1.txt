@@ -1,0 +1,16 @@
+iSlotNbr=9,
+
+vPosX=960,vPosY=175,vSPosX=135,vSPosY=1030
+vPosX=860,vPosY=500,vSPosX=960,vSPosY=600
+
+vPosX=250,vPosY=650,vSPosX=250,vSPosY=810
+
+vPosX=1245,vPosY=325,vSPosX=1350,vSPosY=185
+
+vPosX=1270,vPosY=600,vSPosX=1450,vSPosY=675
+
+vPosX=870,vPosY=840,vSPosX=735,vSPosY=860
+vPosX=1680,vPosY=355,vSPosX=1525,vSPosY=345
+
+vPosX=1400,vPosY=950,vSPosX=1250,vSPosY=870
+vPosX=455,vPosY=970,vSPosX=455,vSPosY=850

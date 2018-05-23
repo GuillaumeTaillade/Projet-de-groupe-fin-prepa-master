@@ -1,0 +1,50 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: Le répertoire intermédiaire (Debug\) contient des fichiers partagés provenant d'un autre projet (SFML-TERRE-CREUSE.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  fonctions.c
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(16): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(20): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(24): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(28): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(32): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(36): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(40): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(44): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(36): warning C4020: 'sfFont_createFromFile' : paramètres réels trop nombreux
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(40): warning C4020: 'sfText_setFont' : paramètres réels trop nombreux
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(54): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(58): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(65): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(67): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(73): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(86): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(88): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(100): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(102): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(113): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(118): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(250): warning C4098: 'loadEnnemyPathPoint' : fonction 'void' retournant une valeur
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(281): warning C4098: 'loadTowerSlots' : fonction 'void' retournant une valeur
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1298): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1299): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1307): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1312): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1317): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1322): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1334): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1343): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1344): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1352): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1373): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1374): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1393): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1394): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1396): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1397): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1424): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1425): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1440): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1441): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1457): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(1458): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(68): warning C4716: 'DrawTextWindow' : doit retourner une valeur
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\fonctions.c(59): warning C4716: 'DrawTextInTextBox' : doit retourner une valeur
+  SFML-window.vcxproj -> C:\Users\taillade.guillaume\Desktop\BLOOD SYSTEM\Debug\Tower Defense.exe
