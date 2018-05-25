@@ -1,0 +1,8 @@
+iSlotNbr=6,
+
+vPosX=1560,vPosY=405,vSPosX=1670,vSPosY=465
+vPosX=788,vPosY=230,vSPosX=870,vSPosY=155
+vPosX=420,vPosY=415,vSPosX=320,vSPosY=485
+vPosX=870,vPosY=585,vSPosX=960,vSPosY=500
+vPosX=1170,vPosY=775,vSPosX=1280,vSPosY=860
+vPosX=850,vPosY=900,vSPosX=925,vSPosY=815

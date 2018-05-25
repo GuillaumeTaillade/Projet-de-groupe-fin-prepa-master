@@ -1,0 +1,214 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: Le répertoire intermédiaire (Release\) contient des fichiers partagés provenant d'un autre projet (SFML-TERRE-CREUSE.vcxproj, SFML-window.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  fonctions.c
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(16): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(20): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(24): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(28): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(32): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(36): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(40): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(44): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+fonctions.c(36): warning C4020: 'sfFont_createFromFile' : paramètres réels trop nombreux
+fonctions.c(40): warning C4020: 'sfText_setFont' : paramètres réels trop nombreux
+fonctions.c(54): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+fonctions.c(58): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(65): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfText *'
+fonctions.c(67): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(73): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+fonctions.c(86): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfText *'
+fonctions.c(88): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfWindow *'
+fonctions.c(100): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+fonctions.c(102): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'const sfSprite *'
+fonctions.c(113): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+fonctions.c(118): warning C4133: 'fonction' : types incompatibles - de 'char *' à 'sfSprite *'
+fonctions.c(252): warning C4098: 'loadEnnemyWave' : fonction 'void' retournant une valeur
+fonctions.c(258): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyWave *' à 't_ListEnnemyPathPoint *'
+fonctions.c(258): warning C4133: '=' : types incompatibles - de 't_EnnemyPathPointElement *' à 't_EnnemyWaveElement *'
+fonctions.c(246): warning C4474: 'sprintf_s' : trop d'arguments passés pour la chaîne de format
+  fonctions.c(246): note: les espaces réservés et leurs paramètres attendent des arguments 0 variadiques, mais des arguments 1 ont été fournis
+fonctions.c(286): warning C4098: 'loadEnnemyPathPoint' : fonction 'void' retournant une valeur
+fonctions.c(317): warning C4098: 'loadTowerSlots' : fonction 'void' retournant une valeur
+fonctions.c(479): warning C4133: 'fonction' : types incompatibles - de 't_ListBullet *' à 't_List *'
+fonctions.c(484): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyBullet *' à 't_List *'
+fonctions.c(499): warning C4133: 'fonction' : types incompatibles - de 't_ListTower *' à 't_List *'
+fonctions.c(504): warning C4133: 'fonction' : types incompatibles - de 't_ListTowerSlot *' à 't_List *'
+fonctions.c(509): warning C4133: 'fonction' : types incompatibles - de 't_ListWhiteCell *' à 't_List *'
+fonctions.c(1494): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyBullet *' à 't_List *'
+fonctions.c(1498): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyBullet *' à 't_List *'
+fonctions.c(1522): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyWave *' à 't_List *'
+fonctions.c(1526): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyWave *' à 't_List *'
+fonctions.c(1550): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyPathPoint *' à 't_List *'
+fonctions.c(1554): warning C4133: 'fonction' : types incompatibles - de 't_ListEnnemyPathPoint *' à 't_List *'
+fonctions.c(1578): warning C4133: 'fonction' : types incompatibles - de 't_ListTowerSlot *' à 't_List *'
+fonctions.c(1582): warning C4133: 'fonction' : types incompatibles - de 't_ListTowerSlot *' à 't_List *'
+fonctions.c(1606): warning C4133: 'fonction' : types incompatibles - de 't_ListTower *' à 't_List *'
+fonctions.c(1610): warning C4133: 'fonction' : types incompatibles - de 't_ListTower *' à 't_List *'
+fonctions.c(1634): warning C4133: 'fonction' : types incompatibles - de 't_ListBullet *' à 't_List *'
+fonctions.c(1638): warning C4133: 'fonction' : types incompatibles - de 't_ListBullet *' à 't_List *'
+fonctions.c(1662): warning C4133: 'fonction' : types incompatibles - de 't_ListWhiteCell *' à 't_List *'
+fonctions.c(1666): warning C4133: 'fonction' : types incompatibles - de 't_ListWhiteCell *' à 't_List *'
+fonctions.c(1836): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1837): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1845): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1850): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1855): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1860): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1872): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1881): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1882): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1890): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1911): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1912): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1931): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1932): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1934): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1935): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+fonctions.c(1964): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+fonctions.c(1965): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+fonctions.c(1981): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+fonctions.c(1982): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+fonctions.c(1998): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+fonctions.c(1999): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+  main.c
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(16): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(20): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(24): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(28): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(32): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(36): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(40): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\taillade.guillaume\desktop\blood system\sfml-window\header.h(44): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+main.c(6): warning C4244: 'fonction' : conversion de 'time_t' en 'unsigned int', perte possible de données
+main.c(361): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(416): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(435): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(436): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(445): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(446): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(752): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(849): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(850): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(940): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(941): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(958): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(959): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(971): warning C4305: '-=' : troncation de 'double' à 'float'
+main.c(972): warning C4305: '-=' : troncation de 'double' à 'float'
+main.c(997): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(1010): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1012): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1013): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1035): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1037): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1038): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1059): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1061): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1062): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1111): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(1112): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(1193): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1195): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1196): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1216): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1218): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1219): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1244): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1246): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1247): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1271): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1273): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1274): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1299): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1301): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1302): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1366): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(1367): warning C4305: '+=' : troncation de 'double' à 'float'
+main.c(1417): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1419): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1420): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1440): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1442): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1443): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1472): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1474): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1475): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1505): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1507): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1508): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1553): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1555): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1556): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1597): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1599): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1600): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1638): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1640): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1641): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1683): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1685): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1686): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1709): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1711): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1712): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1733): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(1735): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1736): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(1924): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(2127): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2128): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+main.c(2315): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2494): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+main.c(2495): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+main.c(2499): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+main.c(2500): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+main.c(2508): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2509): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2524): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2525): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2776): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(2777): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(2785): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(2786): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(2944): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(2956): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(2957): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3019): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(3028): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3029): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3311): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3316): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3321): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3322): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3328): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3329): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3609): warning C4133: 'fonction' : types incompatibles - de 'sfSprite *' à 'const sfShape *'
+main.c(3632): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3633): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3645): warning C4305: '-=' : troncation de 'double' à 'float'
+main.c(3676): warning C4305: '=' : troncation de 'double' à 'float'
+main.c(3839): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(3847): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3848): warning C4244: 'fonction' : conversion de 'float' en 'unsigned int', perte possible de données
+main.c(3909): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+main.c(3910): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+main.c(3932): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(4209): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+main.c(4210): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+main.c(4225): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(4284): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(4456): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+main.c(4461): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(4471): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(4488): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(4512): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(4536): warning C4244: 'fonction' : conversion de 'int' en 'float', perte possible de données
+main.c(364): warning C4244: 'initialisation' : conversion de 'unsigned int' en 'float', perte possible de données
+main.c(471): warning C4101: 'Color_Green' : variable locale non référencée
+main.c(137): warning C4101: 'Rect_TowerBB' : variable locale non référencée
+main.c(470): warning C4101: 'Color_Blue' : variable locale non référencée
+  Génération de code en cours
+  2 of 46 functions ( 4.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  SFML-window.vcxproj -> C:\Users\taillade.guillaume\Desktop\BLOOD SYSTEM\Release\Tower Defense.exe

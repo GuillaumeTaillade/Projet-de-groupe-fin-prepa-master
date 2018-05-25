@@ -1,0 +1,7 @@
+iNbrWave=5
+Wave=1,NbrCholesterol=0,NbrCancer=20,NbrCaillot=0,NbrTotal=20
+Wave=2,NbrCholesterol=5,NbrCancer=20,NbrCaillot=0,NbrTotal=25
+Wave=3,NbrCholesterol=5,NbrCancer=20,NbrCaillot=1,NbrTotal=26
+Wave=4,NbrCholesterol=10,NbrCancer=25,NbrCaillot=1,NbrTotal=36
+Wave=5,NbrCholesterol=10,NbrCancer=30,NbrCaillot=2,NbrTotal=42
+

@@ -1,0 +1,13 @@
+iEnnemyPathNbr=11
+Num=1,vPosX=1300,vPosY=85
+Num=2,vPosX=1820,vPosY=420
+Num=3,vPosX=1533,vPosY=500
+Num=4,vPosX=780,vPosY=100
+Num=5,vPosX=150,vPosY=420
+Num=6,vPosX=600,vPosY=625
+Num=7,vPosX=865,vPosY=440
+Num=8,vPosX=1485,vPosY=780
+Num=9,vPosX=1125,vPosY=950
+Num=10,vPosX=811,vPosY=760
+Num=11,vPosX=200,vPosY=1130
+

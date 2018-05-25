@@ -1,0 +1,6 @@
+iSlotNbr=2,
+
+vPosX=200,vPosY=300,vSPosX=200,vSPosY=250
+
+vPosX=600,vPosY=700,vSPosX=650,vSPosY=650
+

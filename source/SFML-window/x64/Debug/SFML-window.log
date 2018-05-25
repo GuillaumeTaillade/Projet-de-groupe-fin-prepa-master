@@ -1,5 +1,0 @@
-﻿  main.c
-c:\users\guillaume\desktop\blood system\sfml-window\header.h(1): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML\Graphics.h' : No such file or directory
-  fonctions.c
-c:\users\guillaume\desktop\blood system\sfml-window\header.h(1): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML\Graphics.h' : No such file or directory
-  Génération de code en cours...
